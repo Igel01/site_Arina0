@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Люблю тебя</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(to bottom, #fff5f8, #ffe6ef);
+    overflow-x: hidden;
+    color: #5c3a4a;
+}
+
+/* ===== ФОН ===== */
+.background {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+}
+
+.circle {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 182, 193, 0.5);
+    animation: float 25s infinite ease-in-out;
+}
+
+.circle.blur {
+    filter: blur(50px);
+    opacity: 0.5;
+}
+
+.circle.small { width: 60px; height: 60px; }
+.circle.medium { width: 150px; height: 150px; }
+.circle.large { width: 300px; height: 300px; }
+
+@keyframes float {
+    0%   { transform: translateY(0px) translateX(0px); }
+    50%  { transform: translateY(-120px) translateX(60px); }
+    100% { transform: translateY(0px) translateX(0px); }
+}
+
+/* ===== ЦВЕТОЧКИ И СЕРДЕЧКИ ===== */
+.flower {
+    position: absolute;
+    font-size: 35px;
+    animation: floatFlower 30s infinite ease-in-out;
+    opacity: 0.8;
+}
+
+.flower.small { font-size: 25px; opacity: 0.6; }
+.flower.large { font-size: 50px; }
+
+.heart {
+    position: absolute;
+    font-size: 20px;
+    color: rgba(255,105,180,0.6);
+    animation: floatHeart 20s infinite ease-in-out;
+}
+
+@keyframes floatFlower {
+    0%   { transform: translateY(0px) rotate(0deg); }
+    50%  { transform: translateY(-150px) rotate(25deg); }
+    100% { transform: translateY(0px) rotate(0deg); }
+}
+
+@keyframes floatHeart {
+    0%   { transform: translateY(0px) rotate(0deg); }
+    50%  { transform: translateY(-100px) rotate(15deg); }
+    100% { transform: translateY(0px) rotate(0deg); }
+}
+
+/* ===== КОНТЕНТ ===== */
+.container {
+    text-align: center;
+    padding: 60px 20px;
+    max-width: 900px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 18px;
+    margin-bottom: 40px;
+    line-height: 1.7;
+    text-align: justify;
+}
+
+/* ===== ФОТО ===== */
+.photo-frame {
+    width: 220px;
+    height: 220px;
+    margin: 20px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 15px 40px rgba(255,182,193,0.6);
+    background-color: #ffd6e7;
+    transition: transform 0.3s;
+}
+
+.photo-frame:hover {
+    transform: scale(1.05) rotate(2deg);
+}
+
+.photo-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* ===== КОЛЛАЖ И КНОПКИ ===== */
+.photo-collage {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+.photo-collage .photo-frame {
+    transform: rotate(calc(-5deg + 10deg * var(--i)));
+}
+
+/* ===== КНОПКА ===== */
+button {
+    margin-top: 30px;
+    background-color: #f8b6c6;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color: #f48fb1;
+}
+
+/* ===== ПОДВАЛ ===== */
+.footer {
+    margin-top: 60px;
+    font-size: 14px;
+    opacity: 0.7;
+}
+
+/* ===== МЕДИА ЗАПРОСЫ ===== */
+@media screen and (max-width: 768px) {
+    h2 { font-size: 32px; }
+    p { font-size: 16px; }
+    .photo-frame { width: 150px; height: 150px; }
+    .flower.large { font-size: 35px; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="background">
+
+    <!-- 💗 КРУЖОЧКИ -->
+    <div class="circle small" style="top:5%; left:15%;"></div>
+    <div class="circle medium blur" style="top:20%; left:70%;"></div>
+    <div class="circle large" style="top:40%; left:80%;"></div>
+    <div class="circle medium blur" style="top:60%; left:10%;"></div>
+    <div class="circle small" style="top:75%; left:50%;"></div>
+    <div class="circle large blur" style="top:30%; left:40%;"></div>
+    <div class="circle medium" style="top:85%; left:85%;"></div>
+    <div class="circle small blur" style="top:50%; left:60%;"></div>
+    <div class="circle medium" style="top:10%; left:50%;"></div>
+    <div class="circle large blur" style="top:70%; left:30%;"></div>
+
+    <!-- 🌸 ЦВЕТОЧКИ -->
+    <div class="flower large" style="top:10%; left:80%;">🌸</div>
+    <div class="flower" style="top:30%; left:20%;">🌷</div>
+    <div class="flower small" style="top:50%; left:5%;">🌺</div>
+    <div class="flower" style="top:70%; left:60%;">🌸</div>
+    <div class="flower large" style="top:85%; left:40%;">🌷</div>
+    <div class="flower small" style="top:15%; left:45%;">🌺</div>
+    <div class="flower" style="top:65%; left:85%;">🌸</div>
+    <div class="flower small" style="top:40%; left:75%;">🌷</div>
+
+    <!-- 💖 СЕРДЕЧКИ -->
+    <div class="heart" style="top:20%; left:10%;">💖</div>
+    <div class="heart" style="top:60%; left:80%;">💖</div>
+    <div class="heart" style="top:40%; left:50%;">💖</div>
+
+</div>
+
+<div class="container">
+
+    <h2>Привет, любимая💗</h2>
+
+    <p>
+        Эта песня у меня ассоциируется с тобой — с той дорогой к тебе и с той дорогой от тебя. Она заставляет меня вспоминать каждый миг, проведённый рядом с тобой. Я так сильно полюбила её, потому что в каждой ноте вижу нас.
+
+Эта песня именно про август, про тот самый наш август. Когда мы еще стеснялись друг друга, узнавали в мелочах и в забавных привычках. Мы разговаривали по душам, гуляли вечером по аллее, пили вместе какао, снимали тик токи, вели прямые эфиры, спали в обнимку, смотрели красную королеву и плакали под нее. Мы влюблялись друг в друга все сильнее.
+
+Тот август был таким же тёплым и прекрасным, как ты… как тот самый первый поцелуй, в котором я не могла пошевелиться из-за бабочек.
+
+Иногда мне кажется, что стоит включить эту песню — и я снова иду по знакомой дороге, чувствую лёгкий ветер, вспоминаю твой взгляд и то, как бьётся сердце, когда ты рядом. И пусть многое осталось позади, эти моменты навсегда останутся во мне — тёплым августом, который живёт где-то глубоко внутри. Я безумно сильно тебя люблю💗💗💗 
+    </p>
+
+    <!-- 📸 КОЛЛАЖ ФОТО -->
+    <div class="photo-collage">
+        <div class="photo-frame" style="--i:0;"><img src="img1.jpg" alt="Фото 1"></div>
+        <div class="photo-frame" style="--i:1;"><img src="img2.jpg" alt="Фото 2"></div>
+        <div class="photo-frame" style="--i:2;"><img src="img3.jpg" alt="Фото 3"></div>
+    </div>
+
+    <button onclick="document.getElementById('music').play()">
+        Включить музыку 🎵
+    </button>
+
+    <!-- 🎵 АУДИО -->
+    <audio id="music" loop>
+        <source src="my.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="footer">
+        © 2026 Мой сайт
+    </div>
+
+</div>
+
+</body>
+</html>

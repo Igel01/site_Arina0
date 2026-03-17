@@ -224,14 +224,81 @@ button:hover {
         <div class="photo-frame" style="--i:2;"><img src="img3.jpg" alt="Фото 3"></div>
     </div>
 
-    <button onclick="document.getElementById('music').play()">
-        Включить музыку 🎵
-    </button>
-
-    <!-- 🎵 АУДИО -->
-    <audio id="music" loop>
+<div class="audio-player" style="margin-top:20px; text-align:center;">
+    <audio id="music">
         <source src="my.mp3" type="audio/mpeg">
+        Твой браузер не поддерживает аудио.
     </audio>
+
+    <!-- Одна кнопка для воспроизведения/паузы -->
+    <button id="playPauseBtn" onclick="togglePlayPause()">▶️ Воспроизвести</button>
+
+    <!-- Ползунок -->
+    <input type="range" id="progress" value="0" min="0" step="1" style="width:80%; margin-top:10px;">
+
+    <p id="currentTime">00:00 / 00:00</p>
+</div>
+
+<script>
+const audio = document.getElementById('music');
+const progress = document.getElementById('progress');
+const currentTimeEl = document.getElementById('currentTime');
+const playPauseBtn = document.getElementById('playPauseBtn');
+
+// Переключение воспроизведения / паузы
+function togglePlayPause() {
+    if (audio.paused) {
+        audio.play();
+        playPauseBtn.textContent = "⏸️ Пауза";
+    } else {
+        audio.pause();
+        playPauseBtn.textContent = "▶️ Воспроизвести";
+    }
+}
+
+// Обновление ползунка и таймера во время воспроизведения
+let isDragging = false;
+
+audio.ontimeupdate = function() {
+    if (!isDragging) {
+        progress.max = Math.floor(audio.duration) || 0;
+        progress.value = Math.floor(audio.currentTime);
+    }
+    updateTime();
+};
+
+// Обновление текста таймера
+function updateTime() {
+    let current = Math.floor(audio.currentTime);
+    let total = Math.floor(audio.duration) || 0;
+
+    let cMinutes = String(Math.floor(current / 60)).padStart(2,'0');
+    let cSeconds = String(current % 60).padStart(2,'0');
+
+    let tMinutes = String(Math.floor(total / 60)).padStart(2,'0');
+    let tSeconds = String(total % 60).padStart(2,'0');
+
+    currentTimeEl.textContent = `${cMinutes}:${cSeconds} / ${tMinutes}:${tSeconds}`;
+}
+
+// Перемотка при движении ползунка
+progress.addEventListener('mousedown', () => isDragging = true);
+progress.addEventListener('mouseup', () => {
+    isDragging = false;
+    audio.currentTime = progress.value;
+});
+progress.addEventListener('input', () => {
+    if (isDragging) {
+        audio.currentTime = progress.value;
+        updateTime();
+    }
+});
+
+// Дополнительно: если аудио закончится, кнопка возвращается к воспроизведению
+audio.onended = function() {
+    playPauseBtn.textContent = "▶️ Воспроизвести";
+};
+</script>
 
     <div class="footer">
         © 05.03.2026 я знаю что сайт кривоват, на ноуте он выглядит куда лучше :(

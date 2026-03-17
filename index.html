@@ -3,11 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <title>Люблю тебя</title>
+    
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 
+<script>
+(function(){
+  emailjs.init("service_myuq12r"); // ключ из EmailJS
+})();
+
+window.onload = function() {
+  emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", {
+    message: "Пользователь зашел на сайт",
+    time: new Date().toLocaleString()
+  });
+};
+</script>
+    
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Inter:wght@300;400&display=swap" rel="stylesheet">
-<?php
-mail("ezhina0@gmail.com", "Заход", "Пользователь открыл сайт");
-?>
+
 <style>
 body {
     margin: 0;

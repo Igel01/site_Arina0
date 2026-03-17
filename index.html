@@ -162,11 +162,32 @@ button:hover {
 
 /* ===== МЕДИА ЗАПРОСЫ ===== */
 @media screen and (max-width: 768px) {
-    h2 { font-size: 32px; }
-    p { font-size: 16px; }
-    .photo-frame { width: 150px; height: 150px; }
-    .flower.large { font-size: 35px; }
+    h2 {
+        font-size: 36px; /* чуть больше */
+    }
+    p {
+        font-size: 18px;  /* увеличиваем для читаемости */
+        line-height: 1.8;
+        padding: 0 10px;  /* добавим отступы слева/справа */
+    }
+    .photo-collage {
+        flex-wrap: nowrap; /* все фото в одну линию */
+        overflow-x: auto;  /* добавляем горизонтальный скролл если нужно */
+        gap: 10px;
+        padding: 0 5px;
+    }
+    .photo-frame {
+        width: 120px;  /* уменьшаем фото для телефона */
+        height: 120px;
+        margin: 0; 
+        flex: 0 0 auto; /* не растягиваем фото */
+        transform: rotate(0deg); /* убираем вращение на мобильных */
+    }
+    .audio-player input[type=range] {
+        width: 90%; /* ползунок на всю ширину почти */
+    }
 }
+
 </style>
 </head>
 

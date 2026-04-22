@@ -4,6 +4,21 @@
 <meta charset="UTF-8">
 <title>Почему</title>
 
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+<script>
+(function(){
+  emailjs.init("X9EXtL-wdVnDmO8zj"); // ключ из EmailJS
+})();
+
+window.onload = function() {
+  emailjs.send("service_myuq12r", "template_1o6re7m", {
+    message: "Пользователь зашел на сайт",
+    time: new Date().toLocaleString()
+  });
+};
+</script>
+    
 <style>
 body {
     margin: 0;
